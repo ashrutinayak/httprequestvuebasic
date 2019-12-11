@@ -3,7 +3,11 @@
     <form v-if="!submitdata">
       <input type="text" v-model="name" placeholder="Enter person full name" />
       <br />
-      <input type="number" v-model="number" placeholder="Enter person Mobile number" />
+      <input
+        type="number"
+        v-model="number"
+        placeholder="Enter person Mobile number"
+      />
       <br />
       <input type="email" v-model="email" placeholder="Enter person Email" />
       <br />
@@ -29,47 +33,20 @@ export default {
   },
   methods: {
     handleSubmit: function() {
+      var data1 = {
+        title: this.name,
+        body: this.number + this.email
+      };
       this.$http
-        .post("https://jsonplaceholder.typicode.com/posts", {
+        .post("http://localhost/webserivcedemo/state.php", {
           title: this.name,
-          body: this.number + this.email,
-          userId: 1
+          body: this.number + this.email
         })
         .then(function(data) {
-          console.log(data);
           this.submitdata = true;
         });
     }
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
+<style></style>;
